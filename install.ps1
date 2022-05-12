@@ -21,7 +21,7 @@ $wingetTmp = $tmp + '\winget\'
 $forge = 'forge-1.18.2-40.1.0-installer.jar'
 
 Write-Host "Checking for dependencies..."
-if(Import-Module java){
+if(Get-Command java){
 	if(test-path $minecraft){
 		if(test-path $modsDest -and test-path $shaderpacksDest -and test-path $resourcepacksDest){
 			Invoke-Webrequest $winget -Outfile $wingetOut
@@ -61,5 +61,5 @@ if(Import-Module java){
 	}
 }
 else{
-	Write-Host "Java Not installed. Please recitify this issue. Suggest Openjdk: https://jdk.java.net/"
+	Write-Host "Java Not installed. Please recitify this issue. Suggest Openjdk: https://docs.microsoft.com/en-us/java/openjdk/download/"
 }
