@@ -7,8 +7,8 @@ $url = 'https://archives.hl521.me/'
 $zip = $url + 'zip/' + $archive
 $sum = $url + 'checksums/' + $checksum
 
-Invoke-Webrequest $zip -OutFile $archive 
-Invoke-Webrequest $sum -OutFile $checksum
+Invoke-Webrequest $zip -OutFile $tmp + $archive 
+Invoke-Webrequest $sum -OutFile $tmp + $checksum
 sha512 -c $tmp + $checksum
 Write-Host "Placeholder for sha512sum verification"
 mkdir $tmp + '\minecraft'
