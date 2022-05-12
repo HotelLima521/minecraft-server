@@ -10,6 +10,7 @@ green='\e[0;92m';
 boldgreen='\e[1;92m';
 white='\e[0;37m';
 cyan='\e[0;36m';
+#boldorange='\e[1;31m';
 reset='\[0m';
 ########################################################
 printf "${yellow}Checking for dependencies...\n"
@@ -18,11 +19,11 @@ printf "${cyan}Checking for Java...\n"
 sleep 1
 if [type java]
 then
-	printf "${cyan}Checking for Minecraft...${reset}\n"
+	printf "${cyan}Checking for Minecraft...\n"
 	sleep 1
 	if [ -d ~/.minecraft ]
 	then
-		printf "${cyan}Checking for Forge...${reset}\n"
+		printf "Checking for Forge...\n"
 		sleep 1
 		if [ -d ~/.minecraft/mods ] && [ -d ~/.minecraft/shaderpacks ] && [ -d ~/.minecraft/resourcepacks ]
 		then
@@ -46,26 +47,26 @@ then
 			case $INPUT in
 				Y | y)
 					java -jar $tmp/forge-1.18.2-40.1.0-installer.jar
-					printf "Re-run script now that forge is installed :)${reset}\n"
+					printf "${boldyellow}Re-run script now that forge is installed :)\n"
 					sleep 5
 				;;
 				N | n)
-					printf "Okay, quitting.${reset}\n"
+					printf "${white}Okay, quitting.${reset}\n"
 					sleep 2
 				;;
 				*)
-					printf "Not Understanding Input${reset}\n"
+					printf "${white}Not Understanding Input${reset}\n"
 					sleep 2
 				;;
 			esac
 		
 		fi
 	else
-		printf "Minecraft is not installed. Please install it to continue, then rerun the script. https://minecraft.net/${reset}\n"
+		printf "${boldyellow}Minecraft is not installed. Please install it to continue, then rerun the script. https://minecraft.net/${white}\n"
 		sleep 2
 	fi
 else
-	printf "Java is not installed. Please rectify this issue. Suggest OpenJDK, install with your package manager.${reset}\n"
+	printf "${boldyellow}Java is not installed. Please rectify this issue. Suggest OpenJDK, install with your package manager.${white}\n"
 	sleep 2
 fi
 
