@@ -1,4 +1,4 @@
-#HL521's Minecraft Mod manager
+# HL521's Minecraft Mod manager
 
 For Windows:
 1. Open Powershell
