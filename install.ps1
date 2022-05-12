@@ -46,7 +46,7 @@ if(Get-Command java){
 				Write-Host "Re-Run script now that forge is installed :)"
 				sleep 5
 			}
-			else if(($userIn -eq 'n') -or ($userIn -eq 'N'){
+			else if(($userIn -eq 'n') -or ($userIn -eq 'N')){
 					Write-Host "Okay, quitting." -ForegroundColor White
 					sleep 2
 			}
