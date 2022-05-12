@@ -52,6 +52,7 @@ if(Get-Command java){
 					sleep 2
 				}
 			}
+		}
 	}
 	else{
 		Write-Error -Message "Minecraft is not installed. Please install to continue, then rerun the script. https://minecraft.net/"
