@@ -4,7 +4,7 @@ For Windows:
 1. Open Powershell
 2. Run below code:
 ```powershell
-powershell -command "& {iwr https://raw.githubusercontent.com/HotelLima521/minecraft-server/main/install.ps1 -OutFile install.ps1 }" | powershell -ExecutionPolicy Bypass -File "install.ps1"
+Invoke-Webrequest https://raw.githubusercontent.com/HotelLima521/minecraft-server/main/install.ps1 -OutFile install.ps1 | powershell -ExecutionPolicy Bypass -File "install.ps1"
 ```
 
 
