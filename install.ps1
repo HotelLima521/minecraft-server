@@ -1,16 +1,27 @@
 $work = @{
 	tmp = '%AppData\Local\Temp'
-	archive = 'hl521-minecraft-2022-05-10.zip'
-	checksum = 'hl521-minecraft-2022-05-10.zip.sha512sum'
+	archive = 'hl521-minecraft-2022-05-11.zip'
+	checksum = 'hl521-minecraft-2022-05-11.zip.sha512sum'
 	minecraft = '%AppData\.minecraft'
 }
-powershell -command "& { iwr https://github.com/HotelLima521/minecraft-server/blob/main/$work.archive -OutFile $work.archive }"
-powershell -command "& { iwr https://github.com/HotelLima521/minecraft-server/blob/main/$work.checksum -OutFile $work.checksum }"
+powershell -command "& { iwr https://archives.hl521.me/zip/$work.archive -OutFile $work.archive }"
+powershell -command "& { iwr https://archives.hl521.me/checksum/$work.checksum -OutFile $work.checksum }"
 sha512 -c $work.tmp\$work.checksum
 Write-Host "Placeholder for sha512sum verification"
 mkdir minecraft
-Expand-Archive -LiteralPath '$tmp\hl521-minecraft-2022-05-10.zip' -DestinationPath '$tmp\minecraft'
-java -jar forge-1.18.2-40.1.0-installer.jar
+Expand-Archive -LiteralPath '$work.tmp\$work.archive' -DestinationPath '$work.minecraft'
+param($INPUT=$(throw "Would you like to install Forge? (Only do this if it needs to be updated, or isn't installed`n(Y/n)"))
+Switch(INPUT){
+	Y|y{
+		java -jar forge-1.18.2-40.1.0-installer.jar
+	}
+	N|n{
+		$(throw "Okay, continuing")
+	}
+	default{
+		$(throw "Not understanding Input"
+	}
+}
 cp $work.tmp\mods\* $work.minecraft\mods\
 rm -rv $tmp\minecraft
 rm $work.tmp\$work.archive
