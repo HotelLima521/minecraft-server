@@ -13,7 +13,10 @@ Expand-Archive -LiteralPath '$work.tmp\$work.archive' -DestinationPath '$work.mi
 param($INPUT=$(throw "Would you like to install Forge? (Only do this if it needs to be updated, or isn't installed`n## Y/n ## -> "))
 Switch($INPUT){
 	'y' {
-		java -jar forge-1.18.2-40.1.0-installer.jar
+		
+		Start-Job -ScriptBlock {
+  			& java -jar forge-1.18.2-40.1.0-installer.jar
+		}
 	}
 	'n' {
 		$(throw "Okay, continuing")
