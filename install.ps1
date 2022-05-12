@@ -4,9 +4,13 @@ $work = @{
 	archive = 'hl521-minecraft-2022-05-11.zip'
 	checksum = 'hl521-minecraft-2022-05-11.zip.sha512sum'
 	minecraft = 'C:\Users\$user\AppData\.minecraft'
+	url = 'https://archives.hl521.me/'
+	archive = url + archive
+	checksum = url + checksum
+
 }
-powershell -command "& { iwr https://archives.hl521.me/zip/$work.archive -OutFile $work.archive }"
-powershell -command "& { iwr https://archives.hl521.me/checksum/$work.checksum -OutFile $work.checksum }"
+powershell -command "& { iwr $work.zip -OutFile $work.archive }"
+powershell -command "& { iwr $work.checksum -OutFile $work.checksum }"
 sha512 -c $work.tmp\$work.checksum
 Write-Host "Placeholder for sha512sum verification"
 mkdir $work.tmp\minecraft
