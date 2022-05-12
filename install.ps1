@@ -40,7 +40,7 @@ if(Get-Command java){
 			sleep 0.5
 			Write-Host "Would you like to install it?" -ForegroundColor Magenta
 			sleep 1
-			$INPUT = Read-Host -Prompt "## Y/n ##`n -> " -ForegroundColor Cyan
+			$INPUT = Read-Host -Prompt "## Y/n ##`n -> "
 			Switch($INPUT){
 				'y' {
 						java -jar $forge
