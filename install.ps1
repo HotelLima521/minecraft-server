@@ -20,7 +20,7 @@ $forge = 'forge-1.18.2-40.1.0-installer.jar'
 Write-Host "Checking for dependencies..."
 if(Get-Command java){
 	if(test-path $minecraft){
-		if(test-path $modsDest -and test-path $shaderpacksDest -and test-path $resourcepacksDest){
+		if((test-path $modsDest) -and (test-path $shaderpacksDest) -and (test-path $resourcepacksDest)){
 			Invoke-Webrequest $winget -Outfile $wingetOut
 			Invoke-Webrequest $zip -OutFile $archiveOut
 			Invoke-Webrequest $sum -OutFile $checksumOut
