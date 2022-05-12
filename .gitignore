@@ -1,0 +1,7 @@
+*.jar
+*.tar.gz
+*.zip
+*.sha512sum
+./mods/
+./shaderpacks/
+./resourcepacks/
