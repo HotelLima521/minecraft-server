@@ -21,13 +21,11 @@ Write-Host "Checking for dependencies..."
 if(Get-Command java){
 	if(test-path $minecraft){
 		if((test-path $modsDest) -and (test-path $shaderpacksDest) -and (test-path $resourcepacksDest)){
-			Invoke-Webrequest $winget -Outfile $wingetOut
 			Invoke-Webrequest $zip -OutFile $archiveOut
 			Invoke-Webrequest $sum -OutFile $checksumOut
 			certutil -hashfile $checksumOut sha512
 			Write-Host "Placeholder for sha512sum verification"
 			mkdir $minecraftTmp
-			Expand-Archive -LiteralPath $wingetOut -DestinationPath $wingetTmp
 			Expand-Archive -LiteralPath $archiveOut -DestinationPath $minecraftTmp
 			cd $minecraftTmp
 			#param($INPUT=$(throw "Would you like to install Forge? (Only do this if it needs to be updated, or isn't installed`n## Y/n ## -> "))
