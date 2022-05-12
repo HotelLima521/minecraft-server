@@ -33,7 +33,7 @@ if(Get-Command java){
 			Invoke-Webrequest $zip -OutFile $archiveOut
 			Invoke-Webrequest $sum -OutFile $checksumOut
 			certutil -hashfile $checksumOut sha512
-			Write-Host "Placeholder for sha512sum verification"
+			#Write-Host "Placeholder for sha512sum verification"
 			mkdir $minecraftTmp
 			Expand-Archive -LiteralPath $archiveOut -DestinationPath $minecraftTmp
 			cd $minecraftTmp
@@ -72,8 +72,10 @@ if(Get-Command java){
 	}
 	else{
 		Write-Error -Message "Minecraft is not installed. Please install to continue, then rerun the script. https://minecraft.net/"
+		sleep 2
 	}
 }
 else{
 	Write-Error -Message "Java Not installed. Please recitify this issue. Suggest Openjdk: https://docs.microsoft.com/en-us/java/openjdk/download/"
+	sleep 2
 }
