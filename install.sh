@@ -11,7 +11,7 @@ boldgreen='\e[1;92m';
 white='\e[0;37m';
 cyan='\e[0;36m';
 #boldorange='\e[1;31m';
-reset='\[0m';
+#reset='\[0m';
 ########################################################
 printf "${yellow}Checking for dependencies...\n"
 sleep 1
@@ -27,7 +27,7 @@ then
 		sleep 1
 		if [ -d ~/.minecraft/mods ] && [ -d ~/.minecraft/shaderpacks ] && [ -d ~/.minecraft/resourcepacks ]
 		then
-			printf "${green}Dependencies Check Good!\n${boldgreen}Installing the goods... :)${reset}\n"
+			printf "${green}Dependencies Check Good!\n${boldgreen}Installing the goods... :)${white}\n"
 			wget -c https://archives.hl521.me/tarball/$archive https://archives.hl521.me/checksums/$checksum
 			sha512sum -c $tmp/$checksum
 			mkdir minecraft
@@ -51,11 +51,11 @@ then
 					sleep 5
 				;;
 				N | n)
-					printf "${white}Okay, quitting.${reset}\n"
+					printf "${white}Okay, quitting.\n"
 					sleep 2
 				;;
 				*)
-					printf "${white}Not Understanding Input${reset}\n"
+					printf "${white}Not Understanding Input\n"
 					sleep 2
 				;;
 			esac
