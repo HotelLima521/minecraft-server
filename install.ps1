@@ -1,20 +1,19 @@
 $user = $env:username
-$work = @{
-	tmp = 'C:\Users\$user\AppData\Local\Temp'
-	archive = 'hl521-minecraft-2022-05-11.zip'
-	checksum = 'hl521-minecraft-2022-05-11.zip.sha512sum'
-	minecraft = 'C:\Users\$user\AppData\.minecraft'
-	url = 'https://archives.hl521.me/'
-	zip = url + archive
-	sum = url + checksum
+$tmp = 'C:\Users\' + $user + '\AppData\Local\Temp'
+$archive = 'hl521-minecraft-2022-05-11.zip'
+$checksum = 'hl521-minecraft-2022-05-11.zip.sha512sum'
+$minecraft = 'C:\Users\' + $user' + \AppData\.minecraft'
+$url = 'https://archives.hl521.me/'
+$zip = $url + $archive
+$sum = $url + $checksum
 
 }
-powershell -command "& { iwr $work.zip -OutFile $work.archive }"
-powershell -command "& { iwr $work.sum -OutFile $work.checksum }"
-sha512 -c $work.tmp\$work.checksum
+powershell -command "& { iwr $zip -OutFile $archive }"
+powershell -command "& { iwr $sum -OutFile $checksum }"
+sha512 -c $tmp + $checksum
 Write-Host "Placeholder for sha512sum verification"
-mkdir $work.tmp\minecraft
-Expand-Archive -LiteralPath '$work.tmp\$work.archive' -DestinationPath '$work.minecraft'
+mkdir $tmp + '\minecraft'
+Expand-Archive -LiteralPath $tmp + $archive -DestinationPath $minecraft
 param($INPUT=$(throw "Would you like to install Forge? (Only do this if it needs to be updated, or isn't installed`n## Y/n ## -> "))
 Switch($INPUT){
 	'y' {
@@ -30,9 +29,9 @@ Switch($INPUT){
 		$(throw "Not understanding Input")
 	}
 }
-cp $work.tmp\minecraft\mods\* $work.minecraft\mods\
-cp $work.tmp\minecraft\shaderpacks\* $work.minecraft\shaderpacks\
-cp $work.tmp\minecraft\resourcepacks\* $work.minecraft\resourcepacks\
-rm -rv $tmp\minecraft
-rm $work.tmp\$work.archive
-rm $work.tmp\$work.checksum
+cp $tmp + '\minecraft\mods\*' $minecraft + '\mods\'
+cp $tmp + '\minecraft\shaderpacks\*' $minecraft + '\shaderpacks\'
+cp $tmp + '\minecraft\resourcepacks\*' $minecraft +'\resourcepacks\'
+rm -rv $tmp + '\minecraft'
+rm $tmp + $archive
+rm $tmp + $checksum
