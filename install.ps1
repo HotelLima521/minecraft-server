@@ -11,7 +11,7 @@ $checksumOut = $tmp + '\' + $checksum
 
 Invoke-Webrequest $zip -OutFile $archiveOut
 Invoke-Webrequest $sum -OutFile $checksumOut
-sha512 -c $tmp + $checksum
+certutil -hashfile $checksumOut sha512
 Write-Host "Placeholder for sha512sum verification"
 mkdir $tmp + '\minecraft'
 Expand-Archive -LiteralPath $tmp + $archive -DestinationPath $minecraft
