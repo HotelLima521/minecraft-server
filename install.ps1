@@ -12,15 +12,9 @@ mkdir $work.tmp\minecraft
 Expand-Archive -LiteralPath '$work.tmp\$work.archive' -DestinationPath '$work.minecraft'
 param($INPUT=$(throw "Would you like to install Forge? (Only do this if it needs to be updated, or isn't installed`n## Y/n ## -> "))
 Switch(INPUT){
-	y{
-		java -jar forge-1.18.2-40.1.0-installer.jar
-	}
-	n{
-		$(throw "Okay, continuing")
-	}
-	default{
-		$(throw "Not understanding Input")
-	}
+	Y -Or y {java -jar forge-1.18.2-40.1.0-installer.jar}
+	N -Or n {$(throw "Okay, continuing")}
+	default{$(throw "Not understanding Input")}
 }
 cp $work.tmp\minecraft\mods\* $work.minecraft\mods\
 cp $work.tmp\minecraft\shaderpacks\* $work.minecraft\shaderpacks\
