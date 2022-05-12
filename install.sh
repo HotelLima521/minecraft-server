@@ -16,14 +16,17 @@ printf "${yellow}Checking for dependencies...\n"
 sleep 1
 printf "${cyan}Checking for Java...\n"
 sleep 1
-if [java] then
+if [java]
+then
 	printf "${cyan}Checking for Minecraft...\n"
 	sleep 1
-	if [ -d ~/.minecraft ] then
+	if [ -d ~/.minecraft ]
+	then
 		printf "${cyan}Checking for Forge...\n"
 		sleep 1
-		if [ -d ~/.minecraft/mods ] && [ -d ~/.minecraft/shaderpacks ] && [ -d ~/.minecraft/resourcepacks ] then
-			printf "${green}Dependencies Check Good!\n{${boldgreen}Installing the goods... :)${reset}\n"
+		if [ -d ~/.minecraft/mods ] && [ -d ~/.minecraft/shaderpacks ] && [ -d ~/.minecraft/resourcepacks ]
+		then
+			printf "${green}Dependencies Check Good!\n${boldgreen}Installing the goods... :)${reset}\n"
 			wget -c https://archives.hl521.me/tarball/$archive https://archives.hl521.me/checksums/$checksum
 			sha512sum -c $tmp/$checksum
 			mkdir minecraft
