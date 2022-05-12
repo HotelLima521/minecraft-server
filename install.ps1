@@ -40,21 +40,19 @@ if(Get-Command java){
 			sleep 1
 			Write-Host "Would you like to install it?" -ForegroundColor Magenta
 			sleep 1
-			$userIn = Read-Host -Prompt "## Y/n ##`n -> "
-			Switch($userIn){
-				'y' {
-					java -jar $forge
-					Write-Host "Re-Run script now that forge is installed :)"
-					sleep 5
-				}
-				'n' {
+			$userIn = Read-Host "## Y/n ##`n -> "
+			if(($userIn -eq 'y') -or ($userIn -eq 'Y')){
+				java -jar $forge
+				Write-Host "Re-Run script now that forge is installed :)"
+				sleep 5
+			}
+			else if(($userIn -eq 'n') -or ($userIn -eq 'N'){
 					Write-Host "Okay, quitting." -ForegroundColor White
 					sleep 2
-				}
-				default{
+			}
+			else{
 					Write-Error -message "Not understanding Input"
 					sleep 2
-				}
 			}
 		}
 	}
