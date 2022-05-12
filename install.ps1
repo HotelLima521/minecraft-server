@@ -8,13 +8,20 @@ $zip = $url + 'zip/' + $archive
 $sum = $url + 'checksums/' + $checksum
 $archiveOut = $tmp + '\' + $archive
 $checksumOut = $tmp + '\' + $checksum
+$minecraftTmp = $tmp + '\minecraft\'
+$modsSrc = $tmp + '\minecraft\mods\*'
+$shaderpacksSrc = $tmp + '\minecraft\shaderpacks\*'
+$resourcepacksSrc = $tmp + '\minecraft\resourcepacks\*'
+$modsDest = $minecraft + '\mods\'
+$shaderpacksDest = $minecraft + '\shaderpacks\'
+$resourcePacksDest = $minecraft + '\resourcepacks\'
 
 Invoke-Webrequest $zip -OutFile $archiveOut
 Invoke-Webrequest $sum -OutFile $checksumOut
 certutil -hashfile $checksumOut sha512
 Write-Host "Placeholder for sha512sum verification"
-mkdir $tmp + '\minecraft'
-Expand-Archive -LiteralPath $tmp + $archive -DestinationPath $minecraft
+mkdir $minecraftTmp
+Expand-Archive -LiteralPath $archiveOut -DestinationPath $minecraft
 param($INPUT=$(throw "Would you like to install Forge? (Only do this if it needs to be updated, or isn't installed`n## Y/n ## -> "))
 Switch($INPUT){
 	'y' {
@@ -30,9 +37,9 @@ Switch($INPUT){
 		$(throw "Not understanding Input")
 	}
 }
-cp $tmp + '\minecraft\mods\*' $minecraft + '\mods\'
-cp $tmp + '\minecraft\shaderpacks\*' $minecraft + '\shaderpacks\'
-cp $tmp + '\minecraft\resourcepacks\*' $minecraft +'\resourcepacks\'
-rm -rv $tmp + '\minecraft'
-rm $tmp + $archive
-rm $tmp + $checksum
+cp $modsSrc $modsDest
+cp $shaderpacksSrc $shaderpacksDest
+cp $resourcepacksSrc $resourcepacksDest
+rm -rv $minecraftTmp
+rm $archiveOut
+rm $checksumOut
