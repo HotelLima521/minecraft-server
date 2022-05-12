@@ -4,11 +4,11 @@ $archive = 'hl521-minecraft-2022-05-11.zip'
 $checksum = 'hl521-minecraft-2022-05-11.zip.sha512sum'
 $minecraft = 'C:\Users\' + $user + '\AppData\.minecraft'
 $url = 'https://archives.hl521.me/'
-$zip = $url + $archive
-$sum = $url + $checksum
+$zip = $url + 'zip/' + $archive
+$sum = $url + 'checksums/' + $checksum
 
-powershell -command "& { iwr $zip -OutFile $archive }"
-powershell -command "& { iwr $sum -OutFile $checksum }"
+Invoke-Webrequest $zip -OutFile $archive 
+Invoke-Webrequest $sum -OutFile $checksum
 sha512 -c $tmp + $checksum
 Write-Host "Placeholder for sha512sum verification"
 mkdir $tmp + '\minecraft'
