@@ -36,7 +36,11 @@ if(Get-Command java){
 			rm $checksumOut
 		}
 		else{
-			param($INPUT=$(Write-Warning -Message "Looks like Forge may not be installed. Would you like to install it? ## Y/n ##`n -> "))
+			Write-Warning -Message "Looks like Forge may not be installed..."
+			sleep 0.5
+			Write-Host "Would you like to install it?" -ForegroundColor Magenta
+			sleep 1
+			$INPUT = Read-Host -Prompt "## Y/n ##`n -> " -ForegroundColor Cyan
 			Switch($INPUT){
 				'y' {
 						java -jar $forge
@@ -44,11 +48,11 @@ if(Get-Command java){
 						sleep 5
 				}
 				'n' {
-					$(throw "Okay, quitting.")
+					Write-Host "Okay, quitting." -ForegroundColor White
 					sleep 2
 				}
 				default{
-					$(throw "Not understanding Input")
+					Write-Error -message "Not understanding Input"
 					sleep 2
 				}
 			}
