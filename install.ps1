@@ -1,8 +1,9 @@
+$user = $env:username
 $work = @{
-	tmp = '%AppData\Local\Temp'
+	tmp = 'C:\Users\$user\AppData\Local\Temp'
 	archive = 'hl521-minecraft-2022-05-11.zip'
 	checksum = 'hl521-minecraft-2022-05-11.zip.sha512sum'
-	minecraft = '%AppData\.minecraft'
+	minecraft = 'C:\Users\$user\AppData\.minecraft'
 }
 powershell -command "& { iwr https://archives.hl521.me/zip/$work.archive -OutFile $work.archive }"
 powershell -command "& { iwr https://archives.hl521.me/checksum/$work.checksum -OutFile $work.checksum }"
