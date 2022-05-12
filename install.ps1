@@ -28,21 +28,6 @@ if(Get-Command java){
 			mkdir $minecraftTmp
 			Expand-Archive -LiteralPath $archiveOut -DestinationPath $minecraftTmp
 			cd $minecraftTmp
-			#param($INPUT=$(throw "Would you like to install Forge? (Only do this if it needs to be updated, or isn't installed`n## Y/n ## -> "))
-			#Switch($INPUT){
-			#	'y' {
-			#		
-			#		Start-Job -ScriptBlock {
-			#			check 	& java -jar $forge
-			#		}
-			#	}
-			#	'n' {
-			#		$(throw "Okay, continuing")
-			#	}
-			#	default{
-			#		$(throw "Not understanding Input")
-			#	}
-			#}
 			cp $modsSrc $modsDest
 			cp $shaderpacksSrc $shaderpacksDest
 			cp $resourcepacksSrc $resourcepacksDest
@@ -50,11 +35,28 @@ if(Get-Command java){
 			rm $archiveOut
 			rm $checksumOut
 		}
+		else{
+			param($INPUT=$(Write-Warning -Message "Looks like Forge may not be installed. Would you like to install it? ## Y/n ##`n -> "))
+			Switch($INPUT){
+				'y' {
+						java -jar $forge
+						Write-Host "Re-Run script now that forge is installed :)"
+						sleep 5
+				}
+				'n' {
+					$(throw "Okay, quitting.")
+					sleep 2
+				}
+				default{
+					$(throw "Not understanding Input")
+					sleep 2
+				}
+			}
 	}
 	else{
-		Write-Host "Minecraft is not installed. Please install to continue, then rerun the script. https://minecraft.net/"
+		Write-Error -Message "Minecraft is not installed. Please install to continue, then rerun the script. https://minecraft.net/"
 	}
 }
 else{
-	Write-Host "Java Not installed. Please recitify this issue. Suggest Openjdk: https://docs.microsoft.com/en-us/java/openjdk/download/"
+	Write-Error -Message "Java Not installed. Please recitify this issue. Suggest Openjdk: https://docs.microsoft.com/en-us/java/openjdk/download/"
 }
