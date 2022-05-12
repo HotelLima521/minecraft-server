@@ -18,10 +18,18 @@ $resourcePacksDest = $minecraft + '\resourcepacks\'
 $forge = 'forge-1.18.2-40.1.0-installer.jar'
 $forgedir = $minecraftTmp + $forge
 
-Write-Host "Checking for dependencies..."
+Write-Host "Checking for dependencies..." -ForegroundColor Yellow
+sleep 1
+Write-Host "Checking for java..." -ForegroundColor Cyan
+sleep 1
 if(Get-Command java){
+	Write-Host "Checking for Minecraft..." -ForegroundColor Cyan
+	sleep 1
 	if(test-path $minecraft){
+		Write-Host "Checking for Forge..." -ForegroundColor Cyan
+		sleep 1
 		if((test-path $modsDest) -and (test-path $shaderpacksDest) -and (test-path $resourcepacksDest)){
+			Write-Host "Dependencies Check Good!`nInstalling the goods... :)" -ForegroundColor Green
 			Invoke-Webrequest $zip -OutFile $archiveOut
 			Invoke-Webrequest $sum -OutFile $checksumOut
 			certutil -hashfile $checksumOut sha512
