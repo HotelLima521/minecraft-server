@@ -17,7 +17,7 @@ printf "${yellow}Checking for dependencies...\n"
 sleep 1
 printf "${cyan}Checking for Java...\n"
 sleep 1
-if [type java]
+if type java
 then
 	printf "${cyan}Checking for Minecraft...\n"
 	sleep 1
