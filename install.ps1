@@ -1,4 +1,4 @@
-$user = $env:username
+$user = [System.Environment]::Username
 $tmp = 'C:\Users\' + $user + '\AppData\Local\Temp'
 $archive = 'hl521-minecraft-2022-05-11.zip'
 $checksum = 'hl521-minecraft-2022-05-11.zip.sha512sum'
