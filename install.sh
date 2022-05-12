@@ -26,7 +26,9 @@ case $INPUT in
 		echo -n "Not Understanding Input"
 		;;
 esac
-cp $tmp/mods/* $minecraft/mods/
+cp $tmp/minecraft/mods/* $minecraft/mods/
+cp $tmp/minecraft/shaderpacks/* $minecraft/shaderpacks/
+cp $tmp/minecraft/resourcepacks/* $minecraft/resourcepacks/
 rm -rv $tmp/minecraft
 rm $tmp/$archive
 rm $tmp/$checksum
