@@ -21,14 +21,15 @@ Invoke-Webrequest $sum -OutFile $checksumOut
 certutil -hashfile $checksumOut sha512
 Write-Host "Placeholder for sha512sum verification"
 mkdir $minecraftTmp
-Expand-Archive -LiteralPath $archiveOut -DestinationPath $minecraft
+Expand-Archive -LiteralPath $archiveOut -DestinationPath $minecraftTmp
+cd $minecraftTmp
 #param($INPUT=$(throw "Would you like to install Forge? (Only do this if it needs to be updated, or isn't installed`n## Y/n ## -> "))
 #Switch($INPUT){
 #	'y' {
 #		
-		Start-Job -ScriptBlock {
-  			& java -jar forge-1.18.2-40.1.0-installer.jar
-		}
+Start-Job -ScriptBlock {
+	& java -jar forge-1.18.2-40.1.0-installer.jar
+}
 #	}
 #	'n' {
 #		$(throw "Okay, continuing")
