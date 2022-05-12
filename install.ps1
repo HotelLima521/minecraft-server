@@ -2,7 +2,7 @@ $user = [System.Environment]::Username
 $tmp = 'C:\Users\' + $user + '\AppData\Local\Temp'
 $archive = 'hl521-minecraft-2022-05-11.zip'
 $checksum = 'hl521-minecraft-2022-05-11.zip.sha512sum'
-$minecraft = 'C:\Users\' + $user + '\AppData\.minecraft'
+$minecraft = 'C:\Users\' + $user + '\AppData\Roaming\.minecraft'
 $url = 'https://archives.hl521.me/'
 $zip = $url + 'zip/' + $archive
 $sum = $url + 'checksums/' + $checksum
@@ -15,9 +15,6 @@ $resourcepacksSrc = $tmp + '\minecraft\resourcepacks\*'
 $modsDest = $minecraft + '\mods\'
 $shaderpacksDest = $minecraft + '\shaderpacks\'
 $resourcePacksDest = $minecraft + '\resourcepacks\'
-$winget = 'https://github.com/microsoft/winget-cli/archive/refs/tags/v1.2.10271.zip'
-$wingetOut = $tmp + '\winget.zip'
-$wingetTmp = $tmp + '\winget\'
 $forge = 'forge-1.18.2-40.1.0-installer.jar'
 
 Write-Host "Checking for dependencies..."
@@ -38,7 +35,7 @@ if(Get-Command java){
 			#	'y' {
 			#		
 			#		Start-Job -ScriptBlock {
-			#			check 	& java -jar forge-1.18.2-40.1.0-installer.jar
+			#			check 	& java -jar $forge
 			#		}
 			#	}
 			#	'n' {
