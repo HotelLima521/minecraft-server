@@ -16,6 +16,7 @@ $modsDest = $minecraft + '\mods\'
 $shaderpacksDest = $minecraft + '\shaderpacks\'
 $resourcePacksDest = $minecraft + '\resourcepacks\'
 $forge = 'forge-1.18.2-40.1.0-installer.jar'
+$userIn = Read-Host -Prompt "## Y/n ##`n -> "
 
 Write-Host "Checking for dependencies..."
 if(Get-Command java){
@@ -40,8 +41,7 @@ if(Get-Command java){
 			sleep 0.5
 			Write-Host "Would you like to install it?" -ForegroundColor Magenta
 			sleep 1
-			$INPUT = Read-Host -Prompt "## Y/n ##`n -> "
-			Switch($INPUT){
+			Switch($userIn){
 				'y' {
 						java -jar $forge
 						Write-Host "Re-Run script now that forge is installed :)"
