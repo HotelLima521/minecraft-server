@@ -18,11 +18,11 @@ printf "${cyan}Checking for Java...\n"
 sleep 1
 if [java]
 then
-	printf "${cyan}Checking for Minecraft...\n"
+	printf "${cyan}Checking for Minecraft...${reset}\n"
 	sleep 1
 	if [ -d ~/.minecraft ]
 	then
-		printf "${cyan}Checking for Forge...\n"
+		printf "${cyan}Checking for Forge...${reset}\n"
 		sleep 1
 		if [ -d ~/.minecraft/mods ] && [ -d ~/.minecraft/shaderpacks ] && [ -d ~/.minecraft/resourcepacks ]
 		then
