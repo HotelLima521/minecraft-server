@@ -1,14 +1,14 @@
 #!/bin/sh
 
-tmp = '/tmp/'
-archive = 'hl521-minecraft-2022-05-10.tar.gz'
-checksum = 'hl521-minecraft-2022-05-10.tar.gz.sha512sum'
-minecraft = '~/.minecraft'
+tmp='/tmp/'
+archive='hl521-minecraft-2022-05-11.tar.gz'
+checksum='hl521-minecraft-2022-05-11.tar.gz.sha512sum'
+minecraft='~/.minecraft'
 wget -c https://archives.hl521.me/tarball/$archive https://archives.hl521.me/checksums/$checksum
 sha512sum -c $tmp/$checksum
 notify-send "Placeholder for sha512sum verification"
 mkdir minecraft
-tar -xzf $tmp/hl521-minecraft-2022-05-10.tar.gz -C $tmp/minecraft
+tar -xzf $tmp/$archive -C $tmp/minecraft
 echo -n "Would you like to install the Forge Client? (Only do this if it needs to be updated, or you don't currently have it)\nY/n"
 read INPUT
 case $INPUT in
