@@ -40,9 +40,14 @@ if(Get-Command java){
 			cp $modsSrc $modsDest
 			cp $shaderpacksSrc $shaderpacksDest
 			cp $resourcepacksSrc $resourcepacksDest
+			cd $tmp
+			Write-Host "Cleaning Up..." -ForegroundColor Yellow
+			sleep 1
 			rm -r -fo $minecraftTmp
 			rm $archiveOut
 			rm $checksumOut
+			Write-Host "Complete!!" -ForegroundColor Green
+			sleep 5
 		}
 		else{
 			Write-Warning -Message "Looks like Forge may not be installed..."
