@@ -3,7 +3,7 @@
 tmp='/tmp'
 archive='hl521-minecraft-2022-05-10.tar.gz'
 checksum='hl521-minecraft-2022-05-10.tar.gz.sha512sum'
-minecraft='~/.minecraft'
+#minecraft='$HOME/.minecraft'
 yellow='\e[0,33m';
 boldyellow='\e[1;33m';
 green='\e[0;92m';
@@ -21,23 +21,25 @@ if type java
 then
 	printf "${cyan}Checking for Minecraft...\n"
 	sleep 1
-	if [ -d ~/.minecraft ]
+	if [ -d $HOME/.minecraft ]
 	then
 		printf "Checking for Forge...\n"
 		sleep 1
-		if [ -d ~/.minecraft/mods ] && [ -d ~/.minecraft/shaderpacks ] && [ -d ~/.minecraft/resourcepacks ]
+		if [ -d $HOME/.minecraft/mods ] && [ -d $HOME/.minecraft/shaderpacks ] && [ -d $HOME/.minecraft/resourcepacks ]
 		then
-			printf "${green}Dependencies Check Good!\n${boldgreen}Installing the goods... :)${white}\n"
-			wget -c https://archives.hl521.me/tarball/$archive https://archives.hl521.me/checksums/$checksum
-			sha512sum -c $tmp/$checksum
+			printf "${green}Dependencies Check Good!\n${boldgreen}Installing the goods...${white} :)\n"
+			cd $tmp
+			wget -c https://archives.hl521.me/tarball/$archive && wget -c https://archives.hl521.me/checksums/$checksum
+			sha512sum -c $checksum
 			mkdir minecraft
-			tar -xzf $tmp/$archive -C $tmp/minecraft
-			cp $tmp/minecraft/mods/* $minecraft/mods/
-			cp $tmp/minecraft/shaderpacks/* $minecraft/shaderpacks/
-			cp $tmp/minecraft/resourcepacks/* $minecraft/resourcepacks/
-			rm -rv $tmp/minecraft
-			rm $tmp/$archive
-			rm $tmp/$checksum
+			tar -xzf $archive -C minecraft
+			cp /tmp/minecraft/mods/* $HOME/.minecraft/mods/
+			cp /tmp/minecraft/shaderpacks/* $HOME/.minecraft/shaderpacks/
+			cp /tmp/minecraft/resourcepacks/* $HOME/.minecraft/resourcepacks/
+			rm -rv minecraft
+			rm $archive
+			rm $checksum
+			cd ~
 		else
 			printf "${boldyellow}Looks like Forge may not be installed...\n"
 			sleep 1
@@ -62,11 +64,11 @@ then
 		
 		fi
 	else
-		printf "${boldyellow}Minecraft is not installed. Please install it to continue, then rerun the script. https://minecraft.net/${white}\n"
+		printf "${boldyellow}Minecraft is not installed. Please install it to continue, then rerun the script. ${white}https://minecraft.net/\n"
 		sleep 2
 	fi
 else
-	printf "${boldyellow}Java is not installed. Please rectify this issue. Suggest OpenJDK, install with your package manager.${white}\n"
+	printf "${boldyellow}Java is not installed. Please rectify this issue. ${white}Suggest OpenJDK, install with your package manager.\n"
 	sleep 2
 fi
 
