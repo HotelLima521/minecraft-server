@@ -1,7 +1,7 @@
 $user = [System.Environment]::Username
 $tmp = 'C:\Users\' + $user + '\AppData\Local\Temp'
-$archive = 'hl521-minecraft-2022-05-11.zip'
-$checksum = 'hl521-minecraft-2022-05-11.zip.sha512sum'
+$archive = 'hl521-minecraft-2022-05-10.zip'
+$checksum = 'hl521-minecraft-2022-05-10.zip.sha512sum'
 $minecraft = 'C:\Users\' + $user + '\AppData\.minecraft'
 $url = 'https://archives.hl521.me/'
 $zip = $url + 'zip/' + $archive
