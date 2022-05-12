@@ -6,9 +6,11 @@ $minecraft = 'C:\Users\' + $user + '\AppData\.minecraft'
 $url = 'https://archives.hl521.me/'
 $zip = $url + 'zip/' + $archive
 $sum = $url + 'checksums/' + $checksum
+$archiveOut = $tmp + '\' + $archive
+$checksumOut = $tmp + '\' + $checksum
 
-Invoke-Webrequest $zip -OutFile $tmp + '\' + $archive 
-Invoke-Webrequest $sum -OutFile $tmp + '\' + $checksum
+Invoke-Webrequest $zip -OutFile $archiveOut
+Invoke-Webrequest $sum -OutFile $checksumOut
 sha512 -c $tmp + $checksum
 Write-Host "Placeholder for sha512sum verification"
 mkdir $tmp + '\minecraft'
