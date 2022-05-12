@@ -12,10 +12,10 @@ mkdir $work.tmp\minecraft
 Expand-Archive -LiteralPath '$work.tmp\$work.archive' -DestinationPath '$work.minecraft'
 param($INPUT=$(throw "Would you like to install Forge? (Only do this if it needs to be updated, or isn't installed`n## Y/n ## -> "))
 Switch($INPUT){
-	'Y' -Or 'y' {
+	'y' {
 		java -jar forge-1.18.2-40.1.0-installer.jar
 	}
-	'N' -Or 'n' {
+	'n' {
 		$(throw "Okay, continuing")
 	}
 	default{
